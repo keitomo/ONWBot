@@ -19,7 +19,7 @@ handler_i = logging.FileHandler(filename='discord_info.log', encoding='utf-8', m
 handler_d.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
 logger_info.addHandler(handler_i)
 
-TOKEN=os.environ["keitomoBot"]
+TOKEN=os.environ["ONWBot"]
 
 INITIAL_EXTENSIONS = [
     'cogs.general',

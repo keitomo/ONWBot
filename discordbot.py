@@ -22,7 +22,6 @@ logger_info.addHandler(handler_i)
 TOKEN=os.environ["ONWBot"]
 
 INITIAL_EXTENSIONS = [
-    'cogs.general',
     'cogs.OneNight'
 ]
 

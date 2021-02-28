@@ -22,9 +22,6 @@ class OneNight(commands.Cog,name="OneNight"):
     async def onw(self,ctx):
         if ctx.invoked_subcommand is None:
             await ctx.send('このコマンドにはサブコマンドが必要です。')
-        """入力中
-        async with ctx.channel.typing():
-        """
 
     @onw.command(help="ワンナイト人狼を開始します")
     async def start(self,ctx):

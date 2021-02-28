@@ -14,6 +14,6 @@
 - [Pythonで実用Discord Bot(discordpy解説)](https://qiita.com/1ntegrale9/items/9d570ef8175cf178468f)
 - [猿でもわかる！discord.pyのIntentsについて！](https://zenn.dev/disneyresidents/articles/discordintents)
 
-使い方わからなかったらまずは調べて
-調べてもわからなかったら下記に連絡
+使い方わからなかったらまずは調べて<br>
+調べてもわからなかったら下記に連絡<br>
 Twitter：@ktmo_mov

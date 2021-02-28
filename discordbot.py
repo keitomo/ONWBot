@@ -28,8 +28,8 @@ INITIAL_EXTENSIONS = [
 
 class OneNightBot(commands.Bot):
 
-    def __init__(self,command_prefix="/",owner_id=None):
-        super().__init__(command_prefix=command_prefix,owner_id=owner_id)
+    def __init__(self,command_prefix="/",owner_id=None,intents=None):
+        super().__init__(command_prefix=command_prefix,owner_id=owner_id,intents=intents)
         for cog in INITIAL_EXTENSIONS:
             try:
                 self.load_extension(cog)
@@ -43,5 +43,6 @@ class OneNightBot(commands.Bot):
         await client.change_presence(activity=discord.Activity(name="test bot"))
 
 if __name__=="__main__":
-    client = OneNightBot()
+    intents=discord.Intents.all()
+    client = OneNightBot(intents=intents)
     client.run(TOKEN)

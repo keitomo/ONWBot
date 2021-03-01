@@ -166,7 +166,11 @@ class OneNight(commands.Cog,name="OneNight"):
         for member in game.member:
             if member.dm_channel == None:
                 await member.create_dm()
-            message = await member.dm_channel.send(embed=game.createDM(member))
+            try:
+                message = await member.dm_channel.send(embed=game.createDM(member))
+            except discord.errors.Forbidden:
+                await channel.send(member.mention+"さんへDMが送信できませんでした。\nアカウントの設定の確認をお願いします。")
+                continue
             if game.getPosition(member.id) =="Seer" or game.getPosition(member.id) =="Thief":
                 OneNight.messageList[message.id]=game
                 game.waitCount += 1

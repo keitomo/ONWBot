@@ -339,11 +339,11 @@ class OneNightWolf:
             if self.finalPosition[exe] == PUNISHMENT:
                 return "吊り人"
         for exe in exeMembers:
-            if self.finalPosition[exe] != WEREWOLF:
-                return "人狼"
-        for exe in exeMembers:
             if self.finalPosition[exe] == WEREWOLF:
                 return "村人"
+        for exe in exeMembers:
+            if self.finalPosition[exe] != WEREWOLF:
+                return "人狼"
         return None
 
     def end(self):

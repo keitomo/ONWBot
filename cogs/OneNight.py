@@ -55,6 +55,8 @@ class OneNight(commands.Cog,name="OneNight"):
                     await self.backAction(reaction,user)
             elif reaction.emoji == "⬅️":
                 await self.backAction(reaction,user)
+            elif OneNight.screenList[guild_id]==OPTION_SCREEN and reaction.emoji == "🔄":
+                await self.resetPostion(reaction,user)
             elif OneNight.screenList[guild_id]==OPTION_SCREEN and reaction.emoji in ["🧑","🧙‍♀️","🕵️","🐺","🤡","👻"]:
                 await self.optionAction(reaction,user)
             elif OneNight.screenList[guild_id]==COUNT_SCREEN and reaction.emoji in ["⬆️","⬇️"]:
@@ -92,11 +94,13 @@ class OneNight(commands.Cog,name="OneNight"):
             await reaction.message.add_reaction("✋")
             await reaction.message.add_reaction("🔧")
             await reaction.message.add_reaction("⚔️")
+            for react in ["⬅️","🧑","🧙‍♀️","🕵️","🐺","🤡","👻","🔄"]:
+                await reaction.message.clear_reaction(react)
         elif OneNight.screenList[guild_id]==COUNT_SCREEN:
             await reaction.message.clear_reactions()
             OneNight.screenList[guild_id]=OPTION_SCREEN
             await reaction.message.edit(embed=game.settingEmbed())
-            for react in ["⬅️","🧑","🧙‍♀️","🕵️","🐺","🤡","👻"]:
+            for react in ["⬅️","🧑","🧙‍♀️","🕵️","🐺","🤡","👻","🔄"]:
                 await reaction.message.add_reaction(react)
         else:
             pass
@@ -107,7 +111,16 @@ class OneNight(commands.Cog,name="OneNight"):
         await reaction.message.clear_reactions()
         OneNight.screenList[guild_id]=OPTION_SCREEN
         await reaction.message.edit(embed=game.settingEmbed())
-        for react in ["⬅️","🧑","🧙‍♀️","🕵️","🐺","🤡","👻"]:
+        for react in ["⬅️","🧑","🧙‍♀️","🕵️","🐺","🤡","👻","🔄"]:
+            await reaction.message.add_reaction(react)
+
+    async def resetPostion(self,reaction,user):
+        guild_id = reaction.message.guild.id
+        game = OneNight.gameList[guild_id]
+        await reaction.message.clear_reactions()
+        OneNight.screenList[guild_id]=OPTION_SCREEN
+        await reaction.message.edit(embed=game.resetPostion())
+        for react in ["⬅️","🧑","🧙‍♀️","🕵️","🐺","🤡","👻","🔄"]:
             await reaction.message.add_reaction(react)
 
     async def optionAction(self,reaction,user):

@@ -123,6 +123,32 @@ class OneNightWolf:
         embed.add_field(name="役職",value=self.positionsList())
         return embed
 
+    def resetPostion(self):
+        embed = discord.Embed(title="ワンナイト人狼",description="ゲームの設定を行います")
+        if len(self.member)==2:
+            self.positions=[VILLAGER,SEER,THIEF,WEREWOLF]
+        if len(self.member)==3:
+            self.positions=[VILLAGER,SEER,THIEF,WEREWOLF,WEREWOLF]
+        elif len(self.member)==4:
+            self.positions=[VILLAGER,VILLAGER,SEER,THIEF,WEREWOLF,WEREWOLF]
+        elif len(self.member)==5:
+            self.positions=[VILLAGER,VILLAGER,VILLAGER,SEER,THIEF,WEREWOLF,WEREWOLF]
+        elif len(self.member)==6:
+            self.positions=[VILLAGER,VILLAGER,VILLAGER,SEER,THIEF,WEREWOLF,WEREWOLF,MADMAN]
+        elif len(self.member)==7:
+            self.positions=[VILLAGER,VILLAGER,VILLAGER,SEER,THIEF,WEREWOLF,WEREWOLF,MADMAN,PUNISHMENT]
+        elif len(self.member)>=8:
+            self.positions=[VILLAGER,VILLAGER,VILLAGER,VILLAGER,SEER,THIEF,WEREWOLF,WEREWOLF,MADMAN,PUNISHMENT]
+        self.startSet=True
+        result = ""
+        for defpos in OneNightWolf.defaultPositions:
+            result += defpos.icon
+            result += "："+defpos.name+" "
+            result += str(self.positions.count(defpos.ID))+"人"
+            result += "\n"
+        embed.add_field(name="人数を変えたい役職を選んでください",value=result)
+        return embed
+
     def settingEmbed(self):
         embed = discord.Embed(title="ワンナイト人狼",description="ゲームの設定を行います")
         if not self.startSet:
